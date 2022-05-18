@@ -1,4 +1,6 @@
-﻿namespace WebAPIAuthors
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WebAPIAuthors
 {
     public class Startup
     {
@@ -15,6 +17,9 @@
             // Add services to the container.
 
             services.AddControllers();
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Literals.DefaultConnection)));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
