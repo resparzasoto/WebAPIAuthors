@@ -18,7 +18,7 @@ namespace WebAPIAuthors.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Author>>> Get()
         {
-            return await context.Authors.ToListAsync();
+            return await context.Authors.Include(x => x.Books).ToListAsync();
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace WebAPIAuthors.Controllers
         {
             if (author.Id != id)
             {
-                return BadRequest("The id of the author is not the same of the id supplied in the URL.");
+                return BadRequest(Messages.URL_ID_DONT_MATCH_WITH_AUTHOR_ID);
             }
 
             var exists = await context.Authors.AnyAsync(x => x.Id == id);

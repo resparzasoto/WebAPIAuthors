@@ -2,6 +2,6 @@
 {
     public class Literals
     {
-        public const string DefaultConnection = "DefaultConnection";
+        public const string DEFAULT_CONNECTION = "DefaultConnection";
     }
 }
